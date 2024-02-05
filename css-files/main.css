@@ -1,7 +1,4 @@
-body{
-    background-image: url('/img_files/background.webp');
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center ;
-    margin: 0;
+html{
+    background: url(/img_files/background.webp) no-repeat center center fixed; 
+    background-size: cover;
 }

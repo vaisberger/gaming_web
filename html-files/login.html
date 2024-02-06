@@ -7,20 +7,24 @@
     <link rel="stylesheet" href="/css-files/styles.css">
 </head>
 <body>
-    <h2>Login</h2>
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" required><br>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
 
-        <label for="password">Password:</label>
-        <div class="password-wrapper">
-            <input type="password" id="password" required>
-            <span class="toggle-password" onclick="togglePasswordVisibility('password')"></span>
-        </div><br>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('password')"></span>
+            </div>
 
-        <button type="button" onclick="login()">Login</button>
-    </form>
-    <p>If you are not registered, <a href="newUser.html">click here</a> to register.</p>
+            <button type="button" onclick="login()">Login</button>
+        </form>
+        <p>If you are not registered, <a href="newUser.html">click here</a> to register.</p>
+    </div>
    
     <script src="/js-files/login.js"></script>
 </body>

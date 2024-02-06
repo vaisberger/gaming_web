@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="/css-files/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h2>New User</h2>
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="newUsername">New Username:</label>
+                <input type="text" id="newUsername" required>
+            </div>
+
+            <div class="input-group">
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility('newPassword')"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="id">ID:</label>
+                <input type="text" id="id" required>
+            </div>
+
+            <div class="input-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" required>
+            </div>
+
+            <button type="button" onclick="register()">Register</button>
+        </form>
+        <h2>Registered People</h2>
+        <ul id="registeredPeople"></ul>
+    </div>
+   
+    <script src="/js-files/login.js"></script>
+</body>
+</html>

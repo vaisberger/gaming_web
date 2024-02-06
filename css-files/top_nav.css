@@ -1,0 +1,15 @@
+.navbar {
+    overflow: hidden;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  .navbar a {
+    color: white;
+    text-align: right;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+ 

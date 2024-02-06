@@ -1,0 +1,19 @@
+/* Define a class for the eye icon */
+.toggle-password {
+    cursor: pointer;
+    position: relative;
+}
+
+/* Define the style for the eye icon */
+.toggle-password::after {
+    content: '👁️';
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Style for the password input wrapper */
+.password-wrapper {
+    position: relative;
+}

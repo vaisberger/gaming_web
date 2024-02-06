@@ -6,7 +6,7 @@ function login() {
     const savedUser = JSON.parse(localStorage.getItem(username));
     if (savedUser && savedUser.password === password) {
         alert('Login successful!');
-        window.location.href = 'main.html'; 
+        window.location.href = "home_page.html"; 
 
         
     } else {

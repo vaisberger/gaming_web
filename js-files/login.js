@@ -17,7 +17,7 @@ function login() {
 function register() {
     const newUsername = document.getElementById('newUsername').value;
     const newPassword = document.getElementById('newPassword').value;
-    const id = document.getElementById('id').value;
+    const id = document.getElementById('id').value;j2
     const phone = document.getElementById('phone').value;
 
     // Check if username already exists

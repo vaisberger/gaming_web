@@ -6,7 +6,11 @@ function login() {
     const savedUser = JSON.parse(localStorage.getItem(username));
     if (savedUser && savedUser.password === password) {
         alert('Login successful!');
-        window.location.href = "home_page.html"; 
+     // Save the logged-in user's data to localStorage
+        localStorage.setItem('loggedInUser', JSON.stringify(savedUser));
+
+        window.parent.location.href = "home_page.html"; 
+
 
         
     } else {
@@ -17,8 +21,26 @@ function login() {
 function register() {
     const newUsername = document.getElementById('newUsername').value;
     const newPassword = document.getElementById('newPassword').value;
-    const id = document.getElementById('id').value;j2
+    const email = document.getElementById('email').value;
+    const age = document.getElementById('age').value;
+    const id = document.getElementById('id').value;
     const phone = document.getElementById('phone').value;
+    const points= 0;
+
+
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+    }
+
+    // Validate age
+    if (isNaN(age) || age < 0) {
+        alert('Please enter a valid age ');
+        return;
+    }
 
     // Check if username already exists
     if (localStorage.getItem(newUsername)) {
@@ -28,11 +50,18 @@ function register() {
         const newUser = {
             username: newUsername,
             password: newPassword,
+            email: email,
+            age: age,
             id: id,
             phone: phone,
+            points: points,
+
         };
         localStorage.setItem(newUsername, JSON.stringify(newUser));
         alert('Registration successful!');
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        window.parent.location.href = "home_page.html";
+
         displayRegisteredPeople(); // Call function to update the list
 
         // Optionally, you can also display an alert with the new user's details
@@ -50,7 +79,7 @@ function displayRegisteredPeople() {
         if (key !== 'username' && key !== 'password') { // Skip internal keys
             const user = JSON.parse(localStorage.getItem(key));
             const listItem = document.createElement('li');
-            listItem.textContent = `Username: ${user.username}, id: ${user.id}, Phone: ${user.phone}`;
+            listItem.textContent = `Username: ${user.username}, id: ${user.id}, Phone: ${user.phone},Points : ${user.points}`;
             registeredPeopleList.appendChild(listItem);
         }
     }

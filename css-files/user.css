@@ -1,0 +1,28 @@
+.container {
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #673ab7; /* Purple border */
+    border-radius: 10px;
+    background-color: #fff; /* White background */
+}
+
+.quarter-page {
+    width: 25%;
+    min-width: 300px; /* Adjust as needed */
+}
+
+h2 {
+    color: #673ab7; /* Purple text color */
+}
+
+p {
+    margin: 10px 0;
+}
+
+/* Style the user data */
+#username {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Add additional styles as needed */

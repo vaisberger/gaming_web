@@ -20,6 +20,7 @@ html{
     margin-top: 100px;
 }
 
+
 .container {
     max-width: 800px;
     margin: 50px auto;
@@ -38,6 +39,7 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    background-color: #fff; /* Added white background under the table */
 }
 
 th, td {

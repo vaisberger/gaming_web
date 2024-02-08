@@ -19,13 +19,22 @@ td{
 }
 tr{
     height: 145px;
-    background-size:contain;
+  
 }
 img{
-   width: 150px;
-}
+    width: 150px;
+ }
 .games_icon{
+    background-size:cover;
+    width:150px;
+    height: 145px;
+}
+.games_icon div{
+    position:fixed;
     text-align: center;
     color:white;
     background-color: rgba(0,0,0,0.5);
+    border-radius: 16px;
+    width: 130px;
+    height: 120px;;
 }

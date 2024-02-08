@@ -62,27 +62,26 @@ function register() {
         localStorage.setItem('loggedInUser', JSON.stringify(newUser));
         window.parent.location.href = "home_page.html";
 
-        displayRegisteredPeople(); // Call function to update the list
+        getUsersSortedByPoints(); // Call function to update the list
 
         // Optionally, you can also display an alert with the new user's details
         alert(`New user registered:\nUsername: ${newUser.username}\nID: ${newUser.id}\nPhone: ${newUser.phone}`);
 }
 }
 
-function displayRegisteredPeople() {
-    const registeredPeopleList = document.getElementById('registeredPeople');
-    registeredPeopleList.innerHTML = ''; // Clear the list before updating
-
-    // Loop through local storage and display each registered person
+function getUsersSortedByPoints() {
+    const users = [];
+    // Loop through local storage and push each user to the array
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key !== 'username' && key !== 'password') { // Skip internal keys
             const user = JSON.parse(localStorage.getItem(key));
-            const listItem = document.createElement('li');
-            listItem.textContent = `Username: ${user.username}, id: ${user.id}, Phone: ${user.phone},Points : ${user.points}`;
-            registeredPeopleList.appendChild(listItem);
+            users.push(user);
         }
     }
+    // Sort the array by points (descending order)
+    users.sort((a, b) => b.points - a.points);
+    return users;
 }
 // Function to toggle password visibility
 function togglePasswordVisibility(inputId) {
@@ -95,4 +94,25 @@ function togglePasswordVisibility(inputId) {
 }
 
 // Call the function once when the page loads to display existing registered people
-displayRegisteredPeople();
+getUsersSortedByPoints();
+
+function generateUsersTable(users) {
+    const table = document.createElement('table');
+    // Create table header
+    const headerRow = table.insertRow();
+    headerRow.innerHTML = '<th>Username</th><th>ID</th><th>Phone</th><th>Points</th>';
+    // Create table rows for each user
+    users.forEach(user => {
+        const row = table.insertRow();
+        row.innerHTML = `<td>${user.username}</td><td>${user.id}</td><td>${user.phone}</td><td>${user.points}</td>`;
+    });
+    return table;
+}
+function displayRegisteredPeople() {
+    // Get sorted users array
+    const users = getUsersSortedByPoints();
+    // Generate table HTML
+    const table = generateUsersTable(users);
+    // Display the table on the new page
+    document.body.appendChild(table);
+}

@@ -2,3 +2,17 @@ html{
     background: url(/img_files/background.webp) no-repeat center center fixed; 
     background-size: cover;
 }
+.games_icon{
+    width: 200px;
+    height: 200px;
+    background-size: cover;
+    display: inline-block;
+}
+table,
+th,
+td {
+  border-collapse: collapse;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

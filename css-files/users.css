@@ -1,0 +1,60 @@
+/* Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+html{
+    background: url(/img_files/background.webp) no-repeat center center fixed; 
+    background-size: cover;
+}
+#logo{
+    width: 300px;
+    margin: auto;
+}
+.pic{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #673ab7;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #673ab7;
+    color: #fff;
+}
+
+/* Crown Icon Styles */
+.crown-icon {
+    width: 20px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 5px;
+}

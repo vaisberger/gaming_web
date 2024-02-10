@@ -1,0 +1,44 @@
+html{
+    background: url(/img_files/background.webp) no-repeat center center fixed; 
+    background-size: cover;
+}
+body{
+    width: 100%;
+}
+.grid{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(6,140px) ;
+    grid-template-rows:repeat(2,calc(140px/2*3)) ;
+}
+.card{
+    width: 140px;
+    height: calc(140px/2*3);
+    position: relative;
+    transform-style: preserve-3d;
+    transition: all 0.4s ease-in-out;
+}
+.img{
+    width: 50px;
+    height: 50px;
+}
+.card.flipp{
+    transform: rotateY(180deg);
+}
+.front,.back{
+    backface-visibility: hidden;
+    position: absolute;
+    border-radius: 12px;
+}
+.card .front{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+}
+.card .front{
+    background-image: url("/img_files/pattern.png") ;
+    background-position: center;
+    background-size: cover;
+    backface-visibility: hidden;
+}

@@ -1,10 +1,12 @@
-let cards[];
-fetch("/.vscode/cards.json")
-.then((res)=>res.json)
-.then((data)=>{
-   cards=[...data,...data]
-   mixcards();
-})
+const cards= document.querySelectorAll('.card');
+function flipCards() {
+    this.classList.toggle('flip');
+  }
+  
+  cards.forEach(card => card.addEventListener('click', flipCards));
+
+
+
 function mixcards(){
     let currentIndex=cards.length,randomIndex;
     while (currentIndex > 0) {

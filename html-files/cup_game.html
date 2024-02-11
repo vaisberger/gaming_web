@@ -1,29 +1,45 @@
 <!DOCTYPE html>
-<html lang="he">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css-files/cup_game.css" />
+  </head>
+  <body>
+    <section class="game_section">
+      <div class="preloader">
+        <div class="loader"></div>
+        <h2 style="color: white;">LOADING...</h3>
+      </div>
+      <h3>THIMBLES!</h3>
+      <div class="game_container" id="game-container">
+        <button
+          class="sewing_thimble thimble-0"
+          id="Cup0"
+        ></button>
+        <button
+          class="sewing_thimble thimble-1"
+          id="Cup1"
+         
+        ></button>
+        <button
+          class="sewing_thimble thimble-2"
+          id="Cup2"
+          
+        ></button>
+        <div class="" id="thimble_ball"></div>
+      </div>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width
-    , initial-scale=1.0">
-  <title> cup_game</title>
-  <link rel="stylesheet" href="/css-files/cup_game.css">
+      <div class="pbutton_container">
+        <button class="Playbutton" id="Playbutton" >
+          Play
+        </button>
+      </div>
+    </section>
 
-
-</head>
-
-<body>
-    <div id="cup_game">
-        <div class="cup"></div>
-        <div class="cup"></div>
-        <div class="cup"></div>
-        <div class="ball"></div>
-        <div id="game-result"></div>
-    </div>
-    
-    <button id="btn-play">Play</button>
-
+    <!-- No code should be below the javascript link -->
     <script src="/js-files/cup_game.js"></script>
-</body>
-
-
-</html>    
+  </body>
+</html>

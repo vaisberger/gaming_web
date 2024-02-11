@@ -5,6 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
     var ball = game.querySelector(".ball");
     var gameResult = game.querySelector("#game-result");
     var playBtn = document.getElementById("btn-play");
+    var posBall;
+    var animsInterval;
+    var cupsWidth = cups[0].offsetWidth; // Assuming all cups have the same width
+    var nbCups = cups.length;
+    var nbSwaps = 0;
 
     function initGame() {
         // Config vars
@@ -13,18 +18,15 @@ document.addEventListener("DOMContentLoaded", function() {
         var nbMaxSwaps = 5;
         
         // Game vars
-        var posBall;
-        var animsInterval;
-        var cupsWidth = cups[0].offsetWidth; // Assuming all cups have the same width
-        var nbCups = cups.length;
-        var nbSwaps = 0;
+       
+       
 
         // Animation
         function move(elemToMove, dir, depth, nbMoves) {
             var distanceAnim = cupsWidth * nbMoves / 2;
             var zindex = 'auto';
             var scale;
-
+        
             if(depth > 0) {
                 zindex = 5;
                 scale = 1.25;
@@ -32,13 +34,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 scale = 0.75;
                 zindex = -5;
             }
-
+        
             if(dir === 'left') {
                 dir = '-';
             } else {
                 dir = '+';
             }
-
+        
+            var isBallUnderCup = (posBall === parseInt(elemToMove.dataset.posCurrent));
+        
             elemToMove.style.zIndex = zindex;
             elemToMove.style.transition = 'transform ' + animSpeed / 2 + 'ms linear';
             elemToMove.style.transform = 'translateX(' + dir + distanceAnim + 'px) scale(' + scale + ')';
@@ -46,14 +50,22 @@ document.addEventListener("DOMContentLoaded", function() {
                 elemToMove.style.transition = 'transform ' + animSpeed / 2 + 'ms linear';
                 elemToMove.style.transform = 'translateX(' + dir + distanceAnim + 'px) scale(1)';
                 elemToMove.style.zIndex = 'auto';
-
+        
                 nbSwaps += 0.5;
                 if(nbSwaps >= nbMaxSwaps) {
                     clearInterval(animsInterval);
                     end();
                 }
+        
+                // If the ball is under this cup, update its position
+                if (isBallUnderCup) {
+                    var posCurrent = parseInt(elemToMove.dataset.posCurrent);
+                    posBall = (dir === '-') ? (posCurrent - nbMoves) % nbCups : (posCurrent + nbMoves) % nbCups;
+                    if (posBall < 0) posBall += nbCups; // Ensure positive position
+                }
             }, animSpeed / 2);
         }
+        
 
         function moveToLeft(elemToMove, depth, nbMoves) {
             move(elemToMove, 'left', depth, nbMoves);
@@ -64,47 +76,63 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // Swaps cups position
-        function swapElems(firstCup, secondCup) {
-            var posFirstCup = parseInt(firstCup.dataset.posCurrent);
-            var posSecondCup = parseInt(secondCup.dataset.posCurrent);
-            var nbMoves = Math.abs(posFirstCup - posSecondCup);
+function swapElems(firstCup, secondCup) {
+    var posFirstCup = parseInt(firstCup.dataset.posCurrent);
+    console.log(posFirstCup)
+    var posSecondCup = parseInt(secondCup.dataset.posCurrent);
+    console.log(posSecondCup)
+    var nbMoves = Math.abs(posFirstCup - posSecondCup);
+    console.log(nbMoves)
 
-            if(posFirstCup > posSecondCup) {
-                moveToLeft(firstCup, 1, nbMoves);
-                moveToRight(secondCup, 0, nbMoves);
-            } else {
-                moveToRight(firstCup, 0, nbMoves);
-                moveToLeft(secondCup, 1, nbMoves);
-            }
+    if(posFirstCup > posSecondCup) {
+        moveToLeft(firstCup, 1, nbMoves);
+        moveToRight(secondCup, 0, nbMoves);
+    } else {
+        moveToRight(firstCup, 0, nbMoves);
+        moveToLeft(secondCup, 1, nbMoves);
+    }
 
-            firstCup.dataset.posCurrent = posSecondCup;
-            secondCup.dataset.posCurrent = posFirstCup;
-        }
+    firstCup.dataset.posCurrent = posSecondCup;
+    secondCup.dataset.posCurrent = posFirstCup;
+
+    // Update the position of the ball
+    if (posBall === posFirstCup) {
+        posBall = posSecondCup;
+    } else if (posBall === posSecondCup) {
+        posBall = posFirstCup;
+    }
+}
 
         function animateCups() {
-            var posCups = [];
-            var indexFirstCup = Math.floor(Math.random() * nbCups);
-            var indexSecondCup;
-            var firstCup;
-            var secondCup;
-
-            for(var i = 0; i < nbCups; i++) {
-                posCups.push(i);
+            // Loop through each cup
+            console.log()
+            for (var i = 0; i < nbCups; i++) {
+                var currentCup = cups[i];
+                var posCurrent = parseInt(currentCup.dataset.posCurrent);
+                
+                // Determine the direction to move the cup
+                var dir = posCurrent % 2 === 0 ? 'left' : 'right'; // Alternating directions
+                
+                // Calculate the new position
+                var newPos = dir === 'left' ? posCurrent - 1 : posCurrent + 1;
+                if (newPos < 0) {
+                    newPos = nbCups - 1; // Wrap around to the end
+                } else if (newPos >= nbCups) {
+                    newPos = 0; // Wrap around to the beginning
+                }
+                
+                // Get the cup to swap with
+                var nextCup = cups[newPos];
+                
+                // Perform the swap animation
+                swapElems(currentCup, nextCup);
             }
-
-            posCups.splice(indexFirstCup, 1);
-            indexSecondCup = posCups[Math.floor(Math.random() * (nbCups - 1))];
-
-            firstCup = cups[indexFirstCup];
-            secondCup = cups[indexSecondCup];
-
-            swapElems(firstCup, secondCup);
         }
-
+        
         // Starts a game
         function start() {
-            nbSwaps = 0;
-            posBall = Math.floor(Math.random() * nbCups);
+            nbSwaps = 0;  //number of swaps (nbSwaps) back to 0 
+            posBall = Math.floor(Math.random() * nbCups); //Random Ball Position
       
             playBtn.removeEventListener('click', start);
             game.removeEventListener('click', cupClickHandler);
@@ -126,6 +154,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // End of game
         function end() {	
+            console.log(gameResult)
             playBtn.addEventListener('click', start);
       
             game.addEventListener('click', cupClickHandler);
@@ -149,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(event.target.classList.contains('cup')) {
             var posStart = parseInt(event.target.dataset.posStart);
             var posEnd = parseInt(event.target.dataset.posCurrent);
-
+    
             // If the ball is found
             if(posBall === posStart) {
                 game.removeEventListener('click', cupClickHandler);
@@ -164,14 +193,15 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 gameResult.textContent = 'Try again !';
             }
-
+            console.log(gameResult)
+    
             gameResult.style.display = 'block';
             setTimeout(function() {
                 gameResult.style.display = 'none';
             }, 600);
         }
     }
-
+    
     // Game init when DOM is loaded
     initGame();
 });

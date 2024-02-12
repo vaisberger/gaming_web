@@ -45,6 +45,7 @@ function next(){
   card2=null;
 }
 function restart(){
+    localStorage.setItem('loggedInUser',localStorage.getItem('loggedInUser'));
     score=0;
     next();
     cards.forEach(card => {

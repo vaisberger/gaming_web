@@ -74,7 +74,8 @@
 	flex-direction: column;
 	align-items: center;
 	min-height: 54.4375em;
-	background: url(/img_files/Background.jpg);
+	background: url(/img_files/th\ \(2\).jpg);
+	
 	font-size: 16px;
   }
   
@@ -107,7 +108,7 @@
   }
   
   .thimble-0 {
-	left: 9.5em;
+	left: 12em;
   }
   
   .thimble-1 {
@@ -117,6 +118,13 @@
   
   .thimble-2 {
 	left: 34.3em;
+  }
+  .thimble-3 {
+	top: 13.5em;
+	left: 7em;
+  }
+  .hidden {
+	display: none;
   }
   
   .thimbleup {
@@ -187,3 +195,34 @@
 	color: rgb(0, 0, 0);
 	font-size: large;
   }
+  .level-container {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    background-color: #5f4b8b; /* Purple */
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.level {
+    border: none;
+    background-color: #0077cc; /* Blue */
+    color: #ffffff; /* White */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.level:hover {
+    background-color: #005fa3; /* Darker blue on hover */
+}
+

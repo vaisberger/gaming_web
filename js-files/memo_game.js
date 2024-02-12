@@ -45,7 +45,7 @@ function next(){
   card2=null;
 }
 function restart(){
-    localStorage.setItem('loggedInUser',localStorage.getItem('loggedInUser'));
+    updatescore();
     score=0;
     next();
     cards.forEach(card => {
@@ -53,6 +53,12 @@ function restart(){
     });
     mixcards();   // it dosnt mix the cards
     flipCards()
+}
+function updatescore(){
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    loggedInUser.points += score;
+    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    return;
 }
 
   cards.forEach(card => card.addEventListener('click', flipCards));

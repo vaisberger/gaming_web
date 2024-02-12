@@ -2,7 +2,9 @@ html{
     background: url(/img_files/background.webp) no-repeat center center fixed; 
     background-size: cover;
 }
-
+#ftr{
+    height: 200px;
+}
 .tbl{
   margin-left: auto;
   margin-right: auto;

@@ -8,6 +8,9 @@
 	display: grid;
 	place-items: center;
   }
+  #ftr{
+    height: 200px;
+   }
   
   h3 {
 	font-size: 15em;

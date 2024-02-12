@@ -6,15 +6,18 @@
     , initial-scale=1.0">
     <title> game</title>
     <link rel="stylesheet" href="/css-files/main.css">
-    
-    
+    <script src="/js-files/login.js"></script>
   </head>
-  <body>
+  <body onload="checkCookie()">
     <div class="pic">
       <img id="logo" src="/img_files\logo.png">
     </div>
     <div>
-      <iframe src="login.html" type="text/html" height="500px" width="100%"  frameborder="0"></iframe>
+      <iframe id="log" src="login.html" type="text/html" height="600px" width="100%"  frameborder="0"></iframe>
     </div>
   </body>
+  <footer>
+    <embed id="ftr" src="./footer.html" type="text/html" width="100%">
+    </embed>
+  </footer>
   </html>

@@ -5,6 +5,9 @@ html{
 .navbar{
     width: 100%;
 }
+#ftr{
+    height: 200px;
+}
 #logo{
     width: 300px;
     margin: auto;

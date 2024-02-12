@@ -51,7 +51,7 @@ function restart(){
     cards.forEach(card => {
         card.classList.remove('flip');
     });
-    mixcards();   // it dosnt mix the cards
+    mix();   
     flipCards()
 }
 function updatescore(){
@@ -59,6 +59,12 @@ function updatescore(){
     loggedInUser.points += score;
     localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
     return;
+}
+function mix(){
+  cards.forEach(card => {
+    let random = Math.floor(Math.random() * 18);
+    card.style.order = random;
+  });
 }
 
   cards.forEach(card => card.addEventListener('click', flipCards));

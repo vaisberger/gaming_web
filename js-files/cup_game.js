@@ -61,9 +61,12 @@ window.addEventListener("load", () => {
     document
       .getElementById("Cup2")
       .setAttribute("Class", "sewing_thimble thimble-2");
+    document
+      .getElementById("Cup3")
+      .setAttribute("Class", "sewing_thimble thimble-3 hidden");
   }
   
-  //this functions picks a random integer from 0-2
+  //this functions picks a random integer from 0-25
   function getRandNum() {
     let random = Math.floor(Math.random() * numCups);
     return random;
@@ -79,6 +82,17 @@ window.addEventListener("load", () => {
   let shufflecounter = 0;
 
   function selectLevel(level) {
+    resetGame();
+
+    // Add a CSS class to indicate the currently selected level button
+    const levelButtons = document.querySelectorAll('.level');
+    levelButtons.forEach(button => {
+        if (button.id === `level${level}`) {
+            button.classList.add('selected-level');
+        } else {
+            button.classList.remove('selected-level');
+        }
+    });
     clearInterval(mix); // Stop the current shuffling
 
     // Adjust number of cups and shuffle speed based on the selected level
@@ -92,6 +106,7 @@ window.addEventListener("load", () => {
         numCups = 4; // Level 3: Extra cup, same speed
         shuffleSpeed = 600; // Default shuffle speed
         document.getElementById("Cup3").classList.remove("hidden");
+        
     }
 
     // Start shuffling with updated settings
@@ -126,6 +141,13 @@ window.addEventListener("load", () => {
       PickRandCups();
     }
   }
+
+  function resetGame() {
+    clearInterval(mix); // Stop the current shuffling
+    resetthimbclass(); // Reset cup positions
+    removedisabled(); // Remove disabled attribute from cups
+    shufflecounter = 0; // Reset shuffle counter
+}
   
   //this function removes the disabled attribute from all thimbles
   function removedisabled() {

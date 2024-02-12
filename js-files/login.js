@@ -1,5 +1,5 @@
+var tries=0;
 function login() {
-    const tries=0;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     // Check if user exists and password matches
@@ -10,11 +10,12 @@ function login() {
         localStorage.setItem('loggedInUser', JSON.stringify(savedUser));
         window.parent.location.href = "home_page.html"; 
         creatCookie("user-name",username,"password",password);  
-    } else {
+    } else if(tries<4){
         alert('Invalid username or password');
-        tries++;
-    }
+        tries+=1;
+    }else{
     document.getElementById("log").src="blocked.html"
+    }
 }
 
 function register() {

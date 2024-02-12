@@ -1,4 +1,5 @@
 var tries=0;
+
 function login() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -10,12 +11,21 @@ function login() {
         localStorage.setItem('loggedInUser', JSON.stringify(savedUser));
         window.parent.location.href = "home_page.html"; 
         creatCookie("user-name",username,"password",password);  
-    } else if(tries<4){
+    } else if(tries<2){
         alert('Invalid username or password');
         tries+=1;
     }else{
-    document.getElementById("log").src="blocked.html"
+       alert('You tried to login too many times you are blocked for 1 min');
+       document.getElementById("log").contentWindow
+       .document.getElementById('btn').disable=true;
+       const myTimeout = setTimeout(ztries(), 1000*60);
     }
+}
+function ztries(){
+    document.getElementById("log").contentWindow
+    .document.getElementById('btn').disable=false;
+    tries=0;
+    return 1;
 }
 
 function register() {
@@ -71,7 +81,7 @@ function register() {
 
 function creatCookie(cname, cvalue,cpass,code) {
         const d = new Date();
-        d.setTime(d.getTime() + (24*60*60*1000));
+        d.setTime(d.getTime() + (1000*60));
        let expires = "expires="+ d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";"+cpass+"=" +code+";" + expires + ";path=/html-files/main.html"; 
         alert("Welcome " + cvalue);

@@ -8,6 +8,9 @@ body{
 .navbar{
     width: 100%;
 }
+#ftr{
+    height: 200px;
+}
 .title{
     height: 170px;
     width: 100%;

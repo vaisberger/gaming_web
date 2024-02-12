@@ -1,0 +1,18 @@
+#nav_footer{
+    border: 0px;
+    padding-bottom: 0px;
+    padding-top: 30px;
+    font-family: Calibri ;
+    text-align: center;
+    color: white;
+}
+#icons{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+}
+
+#facebook, #instagram, #youtube{
+    width: 45px;
+    padding: 13px;
+}

@@ -13,10 +13,11 @@
     text-decoration: none;
     display: block;
     font-family: Calibri ;
-    font-size: larger;
+    font-size: 25px;
+    font-weight: bolder;
   }
   #logo{
-    width: 150px;
+    width: 200px;
   }
   #user{
     width: 30px;

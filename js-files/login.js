@@ -1,21 +1,20 @@
 function login() {
+    const tries=0;
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     // Check if user exists and password matches
     const savedUser = JSON.parse(localStorage.getItem(username));
     if (savedUser && savedUser.password === password) {
         alert('Login successful!');
      // Save the logged-in user's data to localStorage
         localStorage.setItem('loggedInUser', JSON.stringify(savedUser));
-
         window.parent.location.href = "home_page.html"; 
-
-
-        
+        creatCookie("user-name",username,"password",password);  
     } else {
         alert('Invalid username or password');
+        tries++;
     }
+    document.getElementById("log").src="blocked.html"
 }
 
 function register() {
@@ -61,12 +60,49 @@ function register() {
         alert('Registration successful!');
         localStorage.setItem('loggedInUser', JSON.stringify(newUser));
         window.parent.location.href = "home_page.html";
-
+        creatCookie("user-name",newUsername,"password",newPassword);
         getUsersSortedByPoints(); // Call function to update the list
 
         // Optionally, you can also display an alert with the new user's details
         alert(`New user registered:\nUsername: ${newUser.username}\nID: ${newUser.id}\nPhone: ${newUser.phone}`);
 }
+}
+
+function creatCookie(cname, cvalue,cpass,code) {
+        const d = new Date();
+        d.setTime(d.getTime() + (24*60*60*1000));
+       let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";"+cpass+"=" +code+";" + expires + ";path=/html-files/main.html"; 
+        alert("Welcome " + cvalue);
+}
+
+    function checkCookie(){
+    let user = getCookie("user-name");
+    if (user != "") {
+      document.getElementById("log").contentWindow
+      .document.getElementById('username').value=user; // setting the username from cookie
+      document.getElementById("log").contentWindow
+      .document.getElementById('password').value=JSON.parse(localStorage.getItem('loggedInUser')).password;
+      alert("Welcome again " + user)
+      window.parent.location.href = "home_page.html";
+    } else {
+      alert("please enter your login info")
+    }
+}
+function getCookie(cname){
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+
 }
 
 function getUsersSortedByPoints() {

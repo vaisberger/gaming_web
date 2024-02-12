@@ -143,6 +143,12 @@ window.addEventListener("load", () => {
           winningthimble.classList.remove("thimbleup");
         }, 2500); //bring the winning thimble down after 2.5secs
         document.getElementById("Playbutton").style.pointerEvents = "all"; //make the play button clickable again
-      }
+         // Increment points for the logged-in user
+         const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+         loggedInUser.points += 1; // Increment points
+         localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser)); // Update localStorage
+     }
+      
+      
     }, 3500);
-  }S
+  }

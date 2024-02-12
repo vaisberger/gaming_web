@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Retrieve user data from localStorage
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    console.log(loggedInUser);
 
     // Check if user is logged in
     if (loggedInUser) {
@@ -16,5 +17,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Redirect to login page if user is not logged in
         window.location.href = "login.html";
     }
+    
 });
 

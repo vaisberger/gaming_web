@@ -16,8 +16,8 @@ function flipCards() {
   }
 function compare(){                            // a function that compares two cards
    if(card1.dataset.name==card2.dataset.name){// if cards are a match the score goes up
-     score++;
      matched();
+     updatescore();
      return;
    }
    reset();
@@ -45,7 +45,6 @@ function next(){
   card2=null;
 }
 function restart(){
-    updatescore();
     score=0;
     next();
     cards.forEach(card => {
@@ -56,7 +55,7 @@ function restart(){
 }
 function updatescore(){
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    loggedInUser.points += score;
+    loggedInUser.points += 1;
     localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
     return;
 }

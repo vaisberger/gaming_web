@@ -2,6 +2,17 @@ html{
     background: url(/img_files/background.webp) no-repeat center center fixed; 
     background-size: cover;
 }
+.tbl{
+    background-image: url(/img_files/gam_tbl.jpg); 
+    background-size:contain;
+    height: 700px;
+    width: 100%;
+    align-items:center;
+    border-style: solid;
+    border-color: brown;
+    border-width: 13px;
+    padding-top: 50px;
+}
 body{
     width: 100%;
 }

@@ -78,7 +78,7 @@
 	align-items: center;
 	min-height: 54.4375em;
 	background: url(/img_files/th\ \(2\).jpg);
-	
+	/* background-size: cover; */
 	font-size: 16px;
   }
   
@@ -123,8 +123,9 @@
 	left: 34.3em;
   }
   .thimble-3 {
-	top: 13.5em;
-	left: 7em;
+	
+	left: 4.3em;
+	
   }
   .hidden {
 	display: none;
@@ -228,4 +229,6 @@
 .level:hover {
     background-color: #005fa3; /* Darker blue on hover */
 }
-
+.selected-level {
+    background-color: yellow; /* Change the background color as desired */
+}

@@ -8,6 +8,14 @@
 	display: grid;
 	place-items: center;
   }
+  html{
+    background: url(/img_files/cupGame.jpg) no-repeat center center fixed; 
+    background-size: cover;
+}
+  
+.navbar{
+    width: 100%;
+}
   #ftr{
     height: 200px;
    }
@@ -77,9 +85,10 @@
 	flex-direction: column;
 	align-items: center;
 	min-height: 54.4375em;
-	background: url(/img_files/th\ \(2\).jpg);
-	/* background-size: cover; */
+	/* background: url(/img_files/cupGame.jpg); */
+	 background-size: cover;
 	font-size: 16px;
+	
   }
   
   .game_container {
@@ -111,7 +120,7 @@
   }
   
   .thimble-0 {
-	left: 12em;
+	left: 9.5em;
   }
   
   .thimble-1 {
@@ -122,6 +131,7 @@
   .thimble-2 {
 	left: 34.3em;
   }
+  
   .thimble-3 {
 	
 	left: 4.3em;

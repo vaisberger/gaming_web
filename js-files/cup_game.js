@@ -38,7 +38,9 @@ window.addEventListener("load", () => {
     document
       .getElementById("thimble_ball")
       .setAttribute("Class", `thimble_ball_position-${rand}`);
+      
     thimb.classList.add("thimbleup");
+
   
     setTimeout(function () {
       thimb.classList.remove("thimbleup");
@@ -97,7 +99,7 @@ window.addEventListener("load", () => {
 
     // Adjust number of cups and shuffle speed based on the selected level
     if (level === 1) {
-        numCups = 3; // Level 1: Less cups, slower speed
+        numCups = 3; // Level 1: Same cups, slower speed
         shuffleSpeed =400 ; // Adjust shuffle speed for level 1
     } else if (level === 2) {
         numCups = 3; // Level 2: Same cups, same speed
@@ -144,9 +146,14 @@ window.addEventListener("load", () => {
 
   function resetGame() {
     clearInterval(mix); // Stop the current shuffling
-    resetthimbclass(); // Reset cup positions
+   // resetthimbclass(); // Reset cup positions
     removedisabled(); // Remove disabled attribute from cups
     shufflecounter = 0; // Reset shuffle counter
+
+    // If it's the third level, ensure that the fourth cup remains visible
+    if (numCups === 4) {
+        document.getElementById("Cup3").classList.remove("hidden");
+    }
 }
   
   //this function removes the disabled attribute from all thimbles

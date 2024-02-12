@@ -1,3 +1,6 @@
+
+let numCups = 0; // Default number of cups
+let shuffleSpeed = 0; // Default shuffle speed
 //pre-loader
 window.addEventListener("load", () => {
     const preloader = document.querySelector(".preloader");
@@ -5,6 +8,10 @@ window.addEventListener("load", () => {
   });
   //this function triggers when you click play
   function StartGame() {
+    if (numCups === 0 || shuffleSpeed === 0) {
+      alert("Please select a level first.");
+      return;
+  }
     Showball();
     // setTimeout(Showball,);
     setTimeout(shuffling, 7000);
@@ -23,7 +30,9 @@ window.addEventListener("load", () => {
   //this function selects one thimble at random and positions the ball under it and lifts it at the beginning
   function Showball() {
     document.getElementById("Playbutton").style.pointerEvents = "none";
+    console.log(numCups)
     let rand = getRandNum();
+
     let thimb = document.getElementById(`Cup${rand}`);
   
     document
@@ -56,18 +65,38 @@ window.addEventListener("load", () => {
   
   //this functions picks a random integer from 0-2
   function getRandNum() {
-    let random = Math.floor(Math.random() * 3);
+    let random = Math.floor(Math.random() * numCups);
     return random;
   }
   
   //this functions runs pickrandcups function after every 0.5secons
   function shuffling() {
-    mix = setInterval(PickRandCups, 500);
+    mix = setInterval(PickRandCups, shuffleSpeed);
   }
   
   let mix;
   
   let shufflecounter = 0;
+
+  function selectLevel(level) {
+    clearInterval(mix); // Stop the current shuffling
+
+    // Adjust number of cups and shuffle speed based on the selected level
+    if (level === 1) {
+        numCups = 3; // Level 1: Less cups, slower speed
+        shuffleSpeed =400 ; // Adjust shuffle speed for level 1
+    } else if (level === 2) {
+        numCups = 3; // Level 2: Same cups, same speed
+        shuffleSpeed = 600; // Default shuffle speed
+    } else if (level === 3) {
+        numCups = 4; // Level 3: Extra cup, same speed
+        shuffleSpeed = 600; // Default shuffle speed
+        document.getElementById("Cup3").classList.remove("hidden");
+    }
+
+    // Start shuffling with updated settings
+    //shuffling();
+}
   
   //this function interchanges the classes of two thimbles
   function PickRandCups() {
@@ -128,10 +157,10 @@ window.addEventListener("load", () => {
       if (winningthimble != selectedthimble) {
         setTimeout(function () {
           selectedthimble.classList.remove("thimbleup");
-        }, 2000); //bring the selected thimble down after 2 secs
+        }, 1000); //bring the selected thimble down after 2 secs
         setTimeout(function () {
           winningthimble.classList.remove("thimbleup");
-        }, 2500); //bring the winning thimble down after 2.5secs
+        }, 2500); //bring  the winning thimble down after 2.5secs
         alert("Try Again");
         document.getElementById("Playbutton").style.pointerEvents = "all"; //make the play button clickable again
       } else if ((winningthimble = selectedthimble)) {
@@ -145,6 +174,7 @@ window.addEventListener("load", () => {
         document.getElementById("Playbutton").style.pointerEvents = "all"; //make the play button clickable again
          // Increment points for the logged-in user
          const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+         console.log()
          loggedInUser.points += 1; // Increment points
          localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser)); // Update localStorage
      }

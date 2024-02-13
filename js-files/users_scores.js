@@ -21,19 +21,32 @@ function displayAllUsers() {
     });
 }
 
-// Function to retrieve all users from localStorage and sort them by points
 function getUsersSortedByPoints() {
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     const users = [];
+    let loggedInUserAdded = false; // Flag to track if the logged-in user has been added
+
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         if (key !== 'username' && key !== 'password') {
             const user = JSON.parse(localStorage.getItem(key));
-            users.push(user);
+            // Check if the user is the same as the logged-in user
+            if (user.username === loggedInUser.username) {
+                // Check if the logged-in user has already been added
+                if (!loggedInUserAdded) {
+                    users.push(user);
+                    loggedInUserAdded = true;
+                }
+            } else {
+                users.push(user);
+            }
         }
     }
     users.sort((a, b) => b.points - a.points); // Sort by points in descending order
     return users;
 }
+
+
 
 // Call the function to display all users when the page loads
 displayAllUsers();

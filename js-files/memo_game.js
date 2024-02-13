@@ -2,8 +2,10 @@ const cards= document.querySelectorAll('.card');
 let lock=false,first=false;
 let card1,card2;
 let score=0;
+
+// a function that adds the fliping motion to cup using the css 180degy
 function flipCards() {
-    if (lock) return;// a function that adds the fliping motion to
+    if (lock) return;
     if (this === card1) return;                      
     this.classList.add('flip');  
     if(!first){
@@ -14,8 +16,11 @@ function flipCards() {
     card2=this;
     compare();
   }
-function compare(){                            // a function that compares two cards
-   if(card1.dataset.name==card2.dataset.name){// if cards are a match the score goes up
+
+  // a function that compares two cards
+  // if cards are a match the score goes up
+function compare(){                            
+   if(card1.dataset.name==card2.dataset.name){
      matched();
      updatescore();
      return;
@@ -23,12 +28,15 @@ function compare(){                            // a function that compares two c
    reset();
 }
 
-function matched(){
+// after we found a match this function removes 
+//the option of the cards to flip we lock it
+function matched(){                            
     card1.removeEventListener('click',flipCards);
     card2.removeEventListener('click',flipCards);
     next();
 }
-  
+ 
+//when the cards do not match this function turns them back
 function reset(){
     lock=true;
     setTimeout(()=> {
@@ -38,12 +46,15 @@ function reset(){
   }, 1500);
 }
 
+// after two cards where flipped this function makes the bord ready for the next flip
 function next(){
   lock=false;
   first=false;
   card1=null;
   card2=null;
 }
+
+// when the user preses the restart game bottun this function makes it happend
 function restart(){
     score=0;
     next();
@@ -53,12 +64,17 @@ function restart(){
     mix();   
     flipCards()
 }
+
+// when getting a match this function updates the score
 function updatescore(){
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     loggedInUser.points += 1;
-    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    var name=loggedInUser.username;
+    localStorage.setItem(name, JSON.stringify(loggedInUser));
     return;
 }
+
+//shuffles the cards when restarting a game
 function mix(){
   cards.forEach(card => {
     let random = Math.floor(Math.random() * 18);
@@ -66,6 +82,7 @@ function mix(){
   });
 }
 
+// an IIEF function that occures auto when the page is loaded
   cards.forEach(card => card.addEventListener('click', flipCards));
 
 (function mixcards(){

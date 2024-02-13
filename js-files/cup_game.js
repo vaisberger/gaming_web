@@ -198,37 +198,17 @@ window.addEventListener("load", () => {
         setTimeout(function () {
           winningthimble.classList.remove("thimbleup");
         }, 2500); //bring the winning thimble down after 2.5secs
-        document.getElementById("Playbutton").style.pointerEvents = "all"; //make the play button clickable again
-
-            // Increment points for the logged-in user
-            const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-            loggedInUser.points += 1; // Increment points
-            localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser)); // Update localStorage
-
-            // Update points for the winning user
-            const winningUser = JSON.parse(localStorage.getItem(selectedthimble.getAttribute('data-username')));
-            winningUser.points += 1; // Increment points
-            localStorage.setItem(selectedthimble.getAttribute('data-username'), JSON.stringify(winningUser)); // Update localStorage
-            updatePointsForAllUsers();
-            // Call the function to display all users and update the table
-            displayAllUsers();
-     }
+        updatescore();
       
-      
+      }
     }, 3500);
   }
-
-  function updatePointsForAllUsers() {
+  
+  function updatescore(){
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
-    for (let i = 0; i < localStorage.length; i++) {
-        const key = localStorage.key(i);
-        if (key !== 'username' && key !== 'password') {
-            const user = JSON.parse(localStorage.getItem(key));
-            // Update points for all users except the logged-in user
-            if (user.username === loggedInUser.username) {
-                user.points += 1; // Increment points
-                localStorage.setItem(user.username, JSON.stringify(user)); // Update localStorage
-            }
-        }
-    }
+    
+    loggedInUser.points += 1;
+    var name=loggedInUser.username;
+    localStorage.setItem(name, JSON.stringify(loggedInUser));
+    return;
 }

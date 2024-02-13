@@ -21,6 +21,7 @@ function login() {
        const myTimeout = setTimeout(ztries(), 1000*60);
     }
 }
+// blocking the user for one min
 function ztries(){
     document.getElementById("log").contentWindow
     .document.getElementById('btn').disable=false;
@@ -69,7 +70,7 @@ function register() {
         };
         localStorage.setItem(newUsername, JSON.stringify(newUser));
         alert('Registration successful!');
-        localStorage.setItem('loggedInUser', JSON.stringify(newUser));
+        localStorage.setItem('loggedInUser', JSON.stringify(newUser));// אולי שיהיה שמור בזה רק השם של הקי שמחזיק את פרטי המשתמש הנוכחי ?
         window.parent.location.href = "home_page.html";
         creatCookie("user-name",newUsername,"password",newPassword);
         getUsersSortedByPoints(); // Call function to update the list
@@ -79,9 +80,10 @@ function register() {
 }
 }
 
+//creats a new cookie when the user logsin or registers
 function creatCookie(cname, cvalue,cpass,code) {
         const d = new Date();
-        d.setTime(d.getTime() + (1000*60));
+        d.setTime(d.getTime() + (1000*60*60));
        let expires = "expires="+ d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";"+cpass+"=" +code+";" + expires + ";path=/html-files/main.html"; 
         alert("Welcome " + cvalue);

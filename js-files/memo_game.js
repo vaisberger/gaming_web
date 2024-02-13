@@ -65,13 +65,16 @@ function restart(){
     flipCards()
 }
 
-//
+// when getting a match this function updates the score
 function updatescore(){
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
     loggedInUser.points += 1;
-    localStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+    var name=loggedInUser.username;
+    localStorage.setItem(name, JSON.stringify(loggedInUser));
     return;
 }
+
+//shuffles the cards when restarting a game
 function mix(){
   cards.forEach(card => {
     let random = Math.floor(Math.random() * 18);
@@ -79,6 +82,7 @@ function mix(){
   });
 }
 
+// an IIEF function that occures auto when the page is loaded
   cards.forEach(card => card.addEventListener('click', flipCards));
 
 (function mixcards(){

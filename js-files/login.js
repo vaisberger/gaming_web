@@ -89,6 +89,7 @@ function creatCookie(cname, cvalue,cpass,code) {
         alert("Welcome " + cvalue);
 }
 
+// a function to check if cookie still exictes 
     function checkCookie(){
     let user = getCookie("user-name");
     if (user != "") {
@@ -102,6 +103,8 @@ function creatCookie(cname, cvalue,cpass,code) {
       alert("please enter your login info")
     }
 }
+
+// get a cookies if there is one by name
 function getCookie(cname){
     let name = cname + "=";
     let ca = document.cookie.split(';');

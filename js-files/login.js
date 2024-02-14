@@ -16,17 +16,11 @@ function login() {
         tries+=1;
     }else{
        alert('You tried to login too many times you are blocked for 1 min');
-       document.getElementById("log").contentWindow
-       .document.getElementById('btn').disable=true;
-       const myTimeout = setTimeout(ztries(), 1000*60);
+       setTimeout(()=> {
+        tries=0;
+        login();
+      }, 1000*60);
     }
-}
-// blocking the user for one min
-function ztries(){
-    document.getElementById("log").contentWindow
-    .document.getElementById('btn').disable=false;
-    tries=0;
-    return 1;
 }
 
 function register() {

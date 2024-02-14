@@ -62,7 +62,7 @@ function restart(){
         card.classList.remove('flip');
     });
     mix();   
-    flipCards()
+    flipCards();
 }
 
 // when getting a match this function updates the score

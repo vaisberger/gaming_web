@@ -40,16 +40,14 @@ window.addEventListener("load", () => {
       .setAttribute("Class", `thimble_ball_position-${rand}`);
       
     thimb.classList.add("thimbleup");
-
-  
     setTimeout(function () {
       thimb.classList.remove("thimbleup");
-    }, 4000);
+    }, 2000);
     setTimeout(function () {
       document
         .getElementById("thimble_ball")
         .classList.remove(`thimble_ball_position-${rand}`);
-    }, 4500);
+    }, 2500);
   }
   
   //this function resets the class of all the thimbles to default
@@ -99,20 +97,19 @@ window.addEventListener("load", () => {
 
     // Adjust number of cups and shuffle speed based on the selected level
     if (level === 1) {
-        numCups = 3; // Level 1: Same cups, slower speed
-        shuffleSpeed =400 ; // Adjust shuffle speed for level 1
+        numCups = 3; // Level 1: 3 cups, slower speed
+        shuffleSpeed =400 ; // 400 shuffle speed for level 1
     } else if (level === 2) {
-        numCups = 3; // Level 2: Same cups, same speed
-        shuffleSpeed = 600; // Default shuffle speed
+        numCups = 3; // Level 2: 3 cups, same speed
+        shuffleSpeed = 600; // 600 shuffle speed
     } else if (level === 3) {
         numCups = 4; // Level 3: Extra cup, same speed
-        shuffleSpeed = 600; // Default shuffle speed
+        shuffleSpeed = 800; // 800 shuffle speed
         document.getElementById("Cup3").classList.remove("hidden");
         
     }
 
-    // Start shuffling with updated settings
-    //shuffling();
+    
 }
   
   //this function interchanges the classes of two thimbles
